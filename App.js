@@ -1,81 +1,12 @@
 import React from 'react';
-import { StyleSheet, Text, FlatList, View } from 'react-native';
-import { v4 } from 'uuid'
-import Header from '@/components/Header'
-import ListUser from '@/components/ListUser'
+import TabBar from './src/navigation/TabBar';
 
 export default class App extends React.Component {
 
-  state = {
-    messages: [
-      {
-        id: v4(),
-        avatar: '',
-        username: '',
-        lastMessager: '',
-        date: new Date()
-      },
-      {
-        id: v4(),
-        avatar: '',
-        username: '',
-        lastMessager: '',
-        date: new Date()
-      },
-      {
-        id: v4(),
-        avatar: '',
-        username: '',
-        lastMessager: '',
-        date: new Date()
-      },
-      {
-        id: v4(),
-        avatar: '',
-        username: '',
-        lastMessager: '',
-        date: new Date()
-      },
-      {
-        id: v4(),
-        avatar: '',
-        username: '',
-        lastMessager: '',
-        date: new Date()
-      },
-      {
-        id: v4(),
-        avatar: '',
-        username: '',
-        lastMessager: '',
-        date: new Date()
-      },
-      {
-        id: v4(),
-        avatar: '',
-        username: '',
-        lastMessager: '',
-        date: new Date()
-      },
-    ] 
-  }
   render() {
     return (
-      <View style={styles.container}>
-        <Header title="Mess"/>
-        <FlatList 
-          data={this.state.messages}
-          renderItem={({item}) => <ListUser item={ item }/>}
-          keyExtractor={(item, index) => item.id}
-        />
-      </View>
-    );
+      <TabBar />
+    )
   }
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-  },
-});
