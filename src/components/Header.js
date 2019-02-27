@@ -1,39 +1,69 @@
 'use strict'
 import React from 'react'
-import { Constants, LinearGradient } from 'expo'
 import {
   View,
   Text,
+  Platform,
   StyleSheet,
-  Platform
 } from 'react-native'
+import { Constants, LinearGradient } from 'expo'
+import Status from './Status'
 import PropTypes from 'prop-types'
 
-function Header ({title}){
-  return(
+const HEIHGT = Platform.OS === 'ios' ? 50 : 56
+
+function Header ({ title, leftIcon, rightIcon, children }) {
+  return (
     <LinearGradient colors={['#ac8bfa', '#636cf9']} start={{ x: 0, y: 0 }} end={{ x: 1, y: 0 }}>
-      <View style={styles.statusbar}></View>
+      <Status />
       <View style={styles.container}>
-        <Text style={styles.title}>{ title }</Text>
+        <View style={styles.iconView}>
+          { leftIcon }        
+        </View>
+        <View style={[styles.flex, styles.center]}>
+          { children ? children : <Text style={styles.textStyle}>{ title }</Text> }
+        </View>
+        <View style={styles.iconView}>
+          { rightIcon }        
+        </View>
       </View>
     </LinearGradient>
   )
 }
 
+Header.propTypes = {
+  title: PropTypes.string,
+  leftIcon: PropTypes.element,
+  rightIcon: PropTypes.element,
+  children: PropTypes.element
+}
+
 const styles = StyleSheet.create({
   container: {
+    height: HEIHGT,
     width: '100%',
-    height: Platform.OS == 'ios' ? 50 : 56,
-    alignItems: 'center',
-    justifyContent: 'center',
+    elevation: 5,
+    flexDirection: 'row',
   },
-  title: {
-    fontSize: 18,
-    fontWeight: '600',
-    color: 'white'
-  },
-  statusbar:{
+  statusBar: {
     height: Constants.statusBarHeight,
+  },
+  iconView: {
+    height: HEIHGT,
+    width: HEIHGT,
+  },
+  center: {
+    alignItems: 'center',
+    justifyContent: 'center'
+  },
+  textStyle: {
+    color: 'white',
+    fontWeight: '300',
+    fontSize: 18,
+    fontFamily: Platform.OS === 'ios' ? 'AvenirNext-Bold' : 'Roboto'
+  },
+  flex: {
+    flex: 1
   }
 })
 
