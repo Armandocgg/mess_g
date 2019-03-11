@@ -12,9 +12,10 @@ import PropTypes from 'prop-types'
 
 const HEIHGT = Platform.OS === 'ios' ? 50 : 56
 
-function Header ({ title, leftIcon, rightIcon, children }) {
+function Header ({ title, leftIcon, rightIcon, children, investColor }) {
+  const colors = investColor ? ['#ac8bfa', '#636cf9'] : ['#636cf9', '#ac8bfa']
   return (
-    <LinearGradient colors={['#ac8bfa', '#636cf9']} start={{ x: 0, y: 0 }} end={{ x: 1, y: 0 }}>
+    <LinearGradient colors={ colors } start={{ x: 0, y: 0 }} end={{ x: 1, y: 0 }}>
       <Status />
       <View style={styles.container}>
         <View style={styles.iconView}>
